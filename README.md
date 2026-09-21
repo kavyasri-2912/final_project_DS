@@ -348,3 +348,97 @@ Context Construction
 LLM
       ↓
 Final Response
+
+--
+
+## 11. AI Agent
+
+The SmartLogix AI Agent connects user questions with appropriate tools.
+
+Supported query types include:
+
+- Order queries
+- Capacity queries
+- Range queries
+- Feasibility queries
+
+Example:
+
+"What is the status of ORD-005379?"
+
+The agent identifies the query intent and selects the appropriate tool.
+
+---
+
+## 12. FastAPI Backend
+
+FastAPI provides the backend API layer for SmartLogix AI.
+
+The backend exposes API endpoints for:
+
+- Health checking
+- AI-agent interaction
+- Logistics queries
+
+Swagger API documentation is available through:
+
+    http://127.0.0.1:8000/docs
+
+---
+
+## 13. Streamlit Dashboard
+
+The Streamlit application provides an interactive interface for the
+SmartLogix AI platform.
+
+### Available Pages
+
+- Dashboard
+- Orders
+- Delivery Tracking
+- Fleet Management
+- Route Optimization
+- Drone Management
+- Analytics
+- AI Assistant
+- Products
+- Reviews & Insights
+- Notifications
+
+---
+
+# 🏗️ System Architecture
+
+```text
+                    ┌─────────────────────┐
+                    │      User           │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │  Streamlit UI       │
+                    │  SmartLogix AI      │
+                    └──────────┬──────────┘
+                               │
+             ┌─────────────────┼─────────────────┐
+             │                 │                 │
+             ▼                 ▼                 ▼
+       ┌───────────┐     ┌────────────┐    ┌─────────────┐
+       │ Analytics │     │ AI Agent   │    │ Operations  │
+       └───────────┘     └─────┬──────┘    └─────────────┘
+                               │
+                               ▼
+                      ┌────────────────┐
+                      │    FastAPI     │
+                      └───────┬────────┘
+                              │
+                 ┌────────────┼────────────┐
+                 │            │            │
+                 ▼            ▼            ▼
+           ┌──────────┐ ┌──────────┐ ┌──────────┐
+           │ RAG      │ │ Ollama / │ │ PostgreSQL│
+           │ Pipeline │ │ DeepSeek │ │ Database  │
+           └──────────┘ └──────────┘ └──────────┘
+                 │
+                 ▼
+          Logistics Datasets
